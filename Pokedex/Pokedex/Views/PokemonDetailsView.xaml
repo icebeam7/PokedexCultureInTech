@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Pokedex.Views.PokemonDetailsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Pokémon Details">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid
+                Margin="10"
+                ColumnDefinitions="*,2*"
+                ColumnSpacing="10"
+                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                RowSpacing="10">
+                <Image
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Margin="3"
+                    Aspect="AspectFit"
+                    HeightRequest="150"
+                    HorizontalOptions="Center"
+                    Source="{Binding SelectedPokemon.Sprite}"
+                    VerticalOptions="Center"
+                    WidthRequest="150" />
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="{Binding SelectedPokemon.IdName}"
+                    TextColor="Blue"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    FontSize="Medium"
+                    HorizontalOptions="End"
+                    Text="Types"
+                    TextColor="Black"
+                    VerticalOptions="Start" />
+
+                <StackLayout
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    BindableLayout.ItemsSource="{Binding SelectedPokemon.Types}"
+                    HorizontalOptions="Start">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontSize="Small"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding Name}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="Italic"
+                    FontSize="Medium"
+                    HorizontalOptions="Start"
+                    Text="{Binding SelectedPokemon.Species.Description}"
+                    TextColor="Green"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    FontSize="Medium"
+                    HorizontalOptions="End"
+                    Text="Abilities"
+                    TextColor="Black"
+                    VerticalOptions="Start" />
+
+                <StackLayout
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    BindableLayout.ItemsSource="{Binding SelectedPokemon.Abilities}"
+                    HorizontalOptions="Start">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontSize="Small"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding Name}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    FontSize="Medium"
+                    HorizontalOptions="End"
+                    Text="Moves"
+                    TextColor="Black"
+                    VerticalOptions="Start" />
+
+                <StackLayout
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    BindableLayout.ItemsSource="{Binding SelectedPokemon.Moves}"
+                    HorizontalOptions="Start">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontSize="Small"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding Name}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

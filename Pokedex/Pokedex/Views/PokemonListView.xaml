@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Pokedex.Views.PokemonListView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Pokédex"
+    BackgroundColor="#DC0A2D">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding ScanCommand}"
+            IconImageSource="pokedex2.png"
+            Order="Primary"
+            Priority="0"
+            Text="Scan" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Image
+                Aspect="AspectFit"
+                HeightRequest="75"
+                IsAnimationPlaying="{Binding IsBusy}"
+                Source="pokeball.gif"
+                WidthRequest="75" />
+
+            <CollectionView
+                ItemsSource="{Binding PokemonCollection}"
+                RemainingItemsThreshold="0"
+                RemainingItemsThresholdReachedCommand="{Binding LoadMorePokemonDataCommand}"
+                SelectedItem="{Binding SelectedPokemon}"
+                SelectionChangedCommand="{Binding GoToPokemonDetailsCommand}"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="10"
+                        Orientation="Vertical"
+                        Span="3"
+                        VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="0"
+                            Padding="5"
+                            BackgroundColor="LightGreen"
+                            CornerRadius="15"
+                            HasShadow="False"
+                            HorizontalOptions="Start"
+                            IsClippedToBounds="True">
+                            <Grid
+                                Margin="0"
+                                Padding="0"
+                                ColumnDefinitions="125"
+                                ColumnSpacing="0"
+                                RowDefinitions="125,Auto,Auto"
+                                RowSpacing="0">
+
+                                <Image
+                                    Grid.Row="0"
+                                    Margin="3"
+                                    Aspect="AspectFit"
+                                    HeightRequest="125"
+                                    HorizontalOptions="Start"
+                                    Source="{Binding Sprite}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="125" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    FontSize="Medium"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Id, StringFormat='#{0:D3}'}"
+                                    TextColor="SteelBlue" />
+
+                                <Label
+                                    Grid.Row="2"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Name}"
+                                    TextColor="Blue" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
